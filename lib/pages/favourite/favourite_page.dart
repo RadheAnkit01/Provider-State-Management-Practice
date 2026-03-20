@@ -4,13 +4,13 @@ import 'package:state_mgmt/pages/favourite/favourite_list_page.dart';
 import 'package:state_mgmt/providers/favourite_provider.dart';
 
 class FavouritePage extends StatelessWidget {
-  FavouritePage({super.key});
+  const FavouritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print("build called");
-    final favouriteProvider = Provider.of<FavouriteProvider>(context);
-    final List<String> items = favouriteProvider.allFruits;
+    print("favouritePage Build called");
+    // final favouriteProvider = Provider.of<FavouriteProvider>(context);
+    // final List<String> items = favouriteProvider.allFruits;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
@@ -31,30 +31,39 @@ class FavouritePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: items.length,
+      body: FavouriteListView(),
+    );
+  }
+}
+
+class FavouriteListView extends StatelessWidget {
+  const FavouriteListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    print("FavouriteListView build called");
+
+    return Consumer<FavouriteProvider>(
+      builder: (context, value, child) {
+        return ListView.builder(
+          itemCount: value.allFruits.length,
           itemBuilder: (BuildContext context, int index) {
-            return Consumer<FavouriteProvider>(
-              builder: (context, value, child) {
-                return ListTile(
-                  onTap: () {
-                    if (value.favFruits.contains(items[index])) {
-                      value.removeFromFav(items[index]);
-                    } else {
-                      value.addToFav(items[index]);
-                    }
-                  },
-                  title: Text('${items[index]}'),
-                  trailing: value.favFruits.contains(items[index])
-                      ? Icon(Icons.favorite, color: Colors.red)
-                      : Icon(Icons.favorite_outline),
-                );
+            return ListTile(
+              onTap: () {
+                if (value.favFruits.contains(value.allFruits[index])) {
+                  value.removeFromFav(value.allFruits[index]);
+                } else {
+                  value.addToFav(value.allFruits[index]);
+                }
               },
+              title: Text(value.allFruits[index]),
+              trailing: value.favFruits.contains(value.allFruits[index])
+                  ? Icon(Icons.favorite, color: Colors.red)
+                  : Icon(Icons.favorite_outline),
             );
           },
-        ),
-      ),
+        );
+      },
     );
   }
 }

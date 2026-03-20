@@ -31,7 +31,7 @@ class FavouriteProvider with ChangeNotifier {
     'Strawberry',
     'Watermelon',
   ];
-  List<String> _favItems = [];
+  final List<String> _favItems = [];
 
   List<String> get allFruits => _fruits;
   List<String> get favFruits => _favItems;

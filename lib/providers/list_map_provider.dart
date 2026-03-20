@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListMapProvider extends ChangeNotifier {
-  List<Map<String, dynamic>> _mData = [];
+  final List<Map<String, dynamic>> _mData = [];
 
   //events
 

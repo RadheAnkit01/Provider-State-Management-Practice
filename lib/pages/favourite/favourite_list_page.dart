@@ -24,7 +24,7 @@ class FavouriteListPage extends StatelessWidget {
                 onTap: () {
                   // value.addToFav(items[index]);
                 },
-                title: Text('${value.favFruits[index]}'),
+                title: Text(value.favFruits[index]),
                 trailing: Icon(Icons.favorite, color: Colors.red),
               );
             },
