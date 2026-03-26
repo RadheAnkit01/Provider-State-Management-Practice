@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:state_mgmt/pages/favourite/favourite_page.dart';
 import 'package:state_mgmt/pages/login_page.dart';
+import 'package:state_mgmt/providers/auth_provider.dart';
 import 'package:state_mgmt/providers/counter_provider.dart';
 import 'package:state_mgmt/providers/favourite_provider.dart';
 import 'package:state_mgmt/providers/list_map_provider.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ListMapProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
         ChangeNotifierProvider(create: (context) => ThemeChangerProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
       ],
       child: Builder(
         builder: (context) {
